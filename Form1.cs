@@ -91,7 +91,6 @@ namespace Tiro_parabolico
                     pictureBox1.Image = CurrentFrame.Bitmap;
                     trackBar1.Value = CurrentFrameNo;
                     CurrentFrameNo += 1;
-                    filtro();
                     await Task.Delay(1000 / FPS);
                 }
             }
@@ -99,34 +98,6 @@ namespace Tiro_parabolico
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void filtro()
-        {
-            Image<Gray, byte> BN = CurrentFrame.ToImage<Gray, byte>();
-            Image<Gray, byte> img;// = BN.Clone();
-            //Image<Gray, byte> canny = img.Canny(0, 100);
-
-            //for (int i = 0; i < img.Width - 1; i++)
-            //{
-            //  for (int j = 0; j < img.Height - 1; j++)
-            //{
-            //  if (BN.Data[j, i, 0] > trackBar2.Value)
-            //{
-            //  img.Data[j, i, 0] = 0;
-
-            //}
-            //else
-            //{
-            //  img.Data[j, i, 0] = 255;
-            //}
-
-            //}
-            //}
-
-            img = BN.Canny(0, trackBar2.Value);
-            pictureBox2.Image = BN.ToBitmap();
-            pictureBox3.Image = img.ToBitmap();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
